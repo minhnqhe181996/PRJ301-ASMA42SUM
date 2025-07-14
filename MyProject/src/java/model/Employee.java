@@ -74,9 +74,4 @@ public class Employee {
         this.Parentemployee = Parentemployee;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" + "Id=" + Id + ", Name=" + Name + ", Dob=" + Dob + ", Email=" + Email + ", Phone=" + Phone + ", Parentemployee=" + Parentemployee + '}';
-    }
-
 }
