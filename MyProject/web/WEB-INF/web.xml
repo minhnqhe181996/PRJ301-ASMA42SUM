@@ -5,8 +5,8 @@
         <servlet-class>Controller.LoginControll</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>homeController</servlet-name>
-        <servlet-class>Controller.homeController</servlet-class>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>Controller.HomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutController</servlet-name>
@@ -49,7 +49,7 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>homeController</servlet-name>
+        <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
