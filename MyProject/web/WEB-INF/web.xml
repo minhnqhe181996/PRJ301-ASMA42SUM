@@ -1,34 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
-	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	 xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-	 version="6.0">
-
-	<!-- AgendaController -->
-	<servlet>
-		<servlet-name>AgendaController</servlet-name>
-		<servlet-class>controller.AgendaController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AgendaController</servlet-name>
-		<url-pattern>/agenda</url-pattern>
-	</servlet-mapping>
-
-	<!-- Add other controllers here as needed, e.g., HomeController, EditRequest, etc. -->
-
-	<!-- Example for HomeController -->
-	<!--
-	<servlet>
-		<servlet-name>HomeController</servlet-name>
-		<servlet-class>controller.HomeController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HomeController</servlet-name>
-		<url-pattern>/home</url-pattern>
-	</servlet-mapping>
-	-->
-
-	<!-- JSPs are accessed via controllers, so no direct mapping needed unless using JSP as entry point -->
-
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+    <servlet>
+        <servlet-name>LoginControll</servlet-name>
+        <servlet-class>Controller.LoginControll</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>homeController</servlet-name>
+        <servlet-class>Controller.homeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>Controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestController</servlet-name>
+        <servlet-class>Controller.RequestController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestViewController</servlet-name>
+        <servlet-class>Controller.RequestViewController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DetailRequest</servlet-name>
+        <servlet-class>Controller.DetailRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestMNM</servlet-name>
+        <servlet-class>Controller.RequestMNM</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteRequest</servlet-name>
+        <servlet-class>Controller.DeleteRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditRequest</servlet-name>
+        <servlet-class>Controller.EditRequest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestViewMNM</servlet-name>
+        <servlet-class>Controller.RequestViewMNM</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AgendaController</servlet-name>
+        <servlet-class>Controller.AgendaController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginControll</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>homeController</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestController</servlet-name>
+        <url-pattern>/Request</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestViewController</servlet-name>
+        <url-pattern>/View</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailRequest</servlet-name>
+        <url-pattern>/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestMNM</servlet-name>
+        <url-pattern>/Management</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteRequest</servlet-name>
+        <url-pattern>/Delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditRequest</servlet-name>
+        <url-pattern>/Edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestViewMNM</servlet-name>
+        <url-pattern>/ViewMNM</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgendaController</servlet-name>
+        <url-pattern>/agenda</url-pattern>
+    </servlet-mapping>
 </web-app>
