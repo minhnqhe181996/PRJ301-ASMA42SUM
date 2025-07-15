@@ -5,4 +5,30 @@
 	 xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
 	 version="6.0">
 
+	<!-- AgendaController -->
+	<servlet>
+		<servlet-name>AgendaController</servlet-name>
+		<servlet-class>controller.AgendaController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AgendaController</servlet-name>
+		<url-pattern>/agenda</url-pattern>
+	</servlet-mapping>
+
+	<!-- Add other controllers here as needed, e.g., HomeController, EditRequest, etc. -->
+
+	<!-- Example for HomeController -->
+	<!--
+	<servlet>
+		<servlet-name>HomeController</servlet-name>
+		<servlet-class>controller.HomeController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HomeController</servlet-name>
+		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+	-->
+
+	<!-- JSPs are accessed via controllers, so no direct mapping needed unless using JSP as entry point -->
+
 </web-app>

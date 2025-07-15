@@ -8,19 +8,19 @@ import java.io.IOException;
 public class DeleteRequest extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        RequestDAO dao = new RequestDAO();
-        if (request.getParameter("id") == null) {
+        String idParam = request.getParameter("id");
+        if (idParam == null) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Missing id parameter");
             return;
         }
+        int id;
         try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            dao.DeleteById(id);
+            id = Integer.parseInt(idParam);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid id format");
             return;
         }
+        RequestDAO dao = new RequestDAO();
         dao.DeleteById(id);
         response.sendRedirect("RequestViewController");
     }

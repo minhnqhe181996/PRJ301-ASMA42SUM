@@ -1,11 +1,17 @@
+
 package dal;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Request;
+import model.RequestDTO;
 
 public class RequestDAO extends DBContext {
+
     public List<Request> getAllRequests() {
         List<Request> list = new ArrayList<>();
         String sql = "SELECT * FROM Request";
@@ -15,12 +21,12 @@ public class RequestDAO extends DBContext {
                 Request req = new Request(
                     rs.getInt("Id"),
                     rs.getInt("EmployeeId"),
-                    rs.getDate("DateTo"),
-                    rs.getDate("DateFrom"),
-                    rs.getDate("DateCreate"),
-                    rs.getString("Reason"),
-                    rs.getString("Status")
-                );
+            rs.getDate("DateTo"),
+            rs.getDate("DateFrom"),
+            rs.getDate("DateCreate"),
+            rs.getString("Reason"),
+            rs.getString("Status")
+        );
                 list.add(req);
             }
         } catch (SQLException e) {
@@ -93,5 +99,26 @@ public class RequestDAO extends DBContext {
             e.printStackTrace();
         }
         return false;
+    }
+    // For compatibility with controller usage
+    public boolean insert(Request req) {
+        return insertRequest(req);
+    }
+
+    // Typo compatibility method for controller
+    public Request getReuestbyId(int id) {
+        return getRequestById(id);
+    }
+
+    public List<RequestDTO> getRequestbyManagerID(int managerId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public List<Request> getRequestbyEmployeeId(int employeeId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void DeleteById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
