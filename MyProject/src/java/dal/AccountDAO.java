@@ -6,49 +6,72 @@ import java.util.List;
 import model.Account;
 
 public class AccountDAO extends DBContext {
+    DBContext db = new DBContext();
+    
     public Account validateUser(String username, String password) {
-        String sql = "SELECT Id, Username, Password, EmployeeId, RoleId FROM Account WHERE Username = ? AND Password = ?";
-        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        String sql = "select * from Account "
+                + "where Username = ? AND Password = ? ";
+        try {
+            PreparedStatement ps = db.connection.prepareStatement(sql);
             ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Account(
-                    rs.getInt("Id"),
-                    rs.getString("Username"),
-                    rs.getString("Password"),
-                    rs.getInt("EmployeeId"),
-                    rs.getInt("RoleId")
-                );
+            while (rs.next()) {
+                Account account = new Account();
+                account.setId(rs.getInt(1));
+                account.setUsername(rs.getString(2));
+                account.setPassword(rs.getString(3));
+                account.setEmployeeId(rs.getInt(4));
+                account.setRoleId(rs.getInt(5));
+                return account;
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+                       ex.printStackTrace();
+
         }
         return null;
     }
-
     public List<Account> getAllAccount() {
         List<Account> list = new ArrayList<>();
-        String sql = "SELECT Id, Username, Password, EmployeeId, RoleId FROM Account";
-        try (PreparedStatement ps = connection.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+        String sql = "select * from [Account]";
+        try {
+
+            PreparedStatement st = db.connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                Account account = new Account(
-                    rs.getInt("Id"),
-                    rs.getString("Username"),
-                    rs.getString("Password"),
-                    rs.getInt("EmployeeId"),
-                    rs.getInt("RoleId")
-                );
-                list.add(account);
+                Account a = new Account();
+                a.setId(rs.getInt(1));
+                a.setUsername(rs.getString(2));
+                a.setPassword(rs.getString(3));
+                a.setEmployeeId(rs.getInt(4));
+                a.setRoleId(rs.getInt(5));
+                list.add(a);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
         }
         return list;
     }
 
     public Account getAccount(String Username, String Password) {
-        return validateUser(Username, Password);
+        String sql = "Select * from Account where Username=? and Password=?";
+        try {
+            PreparedStatement pr = db.connection.prepareStatement(sql);
+            pr.setString(1, Username);
+            pr.setString(2, Password);
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                Account acc = new Account();
+                acc.setId(rs.getInt(1));
+                acc.setUsername(rs.getString(2));
+                acc.setPassword(rs.getString(3));
+                acc.setEmployeeId(rs.getInt(4));
+                return acc;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
     }
+
 }
