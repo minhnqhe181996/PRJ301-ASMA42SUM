@@ -12,28 +12,30 @@ import model.RequestDTO;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
 
 
 public class EmployeeDAO extends DBContext {
 
+    DBContext db = new DBContext();
+
     public List<Employee> getEmployeeByManagerId(int ManagerId) {
         List<Employee> list = new ArrayList<>();
-        String sql = "SELECT Id, Name, Dob, Email, Phone, ParentEmployee FROM Employee WHERE ParentEmployee=?";
-        try (PreparedStatement st = connection.prepareStatement(sql)) {
+        String sql = "select * from Employee where Parentemployee=? ";
+        try {
+            PreparedStatement st = db.connection.prepareStatement(sql);
             st.setInt(1, ManagerId);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Employee e = new Employee();
-                e.setId(rs.getInt("Id"));
-                e.setName(rs.getString("Name"));
-                e.setDob(rs.getDate("Dob"));
-                e.setEmail(rs.getString("Email"));
-                e.setPhone(rs.getString("Phone"));
-                e.setParentemployee(rs.getInt("ParentEmployee"));
+                e.setId(rs.getInt(1));
+                e.setName(rs.getString(2));
+                e.setDob(rs.getDate(3));
+                e.setEmail(rs.getString(4));
+                e.setPhone(rs.getString(5));
+                e.setParentemployee(rs.getInt(6));
                 list.add(e);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
@@ -41,8 +43,9 @@ public class EmployeeDAO extends DBContext {
 
     public List<Employee> getAllEmployees() {
         List<Employee> list = new ArrayList<>();
-        String sql = "SELECT Id, Name, Dob, Email, Phone, ParentEmployee FROM Employee";
-        try (PreparedStatement st = connection.prepareStatement(sql)) {
+        String sql = "SELECT * FROM Employee";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Employee e = new Employee();
@@ -51,10 +54,10 @@ public class EmployeeDAO extends DBContext {
                 e.setDob(rs.getDate("Dob"));
                 e.setEmail(rs.getString("Email"));
                 e.setPhone(rs.getString("Phone"));
-                e.setParentemployee(rs.getInt("ParentEmployee"));
+                e.setParentemployee(rs.getInt("Parentemployee"));
                 list.add(e);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return list;
@@ -62,12 +65,16 @@ public class EmployeeDAO extends DBContext {
 
     public List<AgendaDTO> getAgendaByEmployeeId(int employeeId, Date dateFrom, Date dateTo) {
         List<AgendaDTO> agendaList = new ArrayList<>();
-        String sqlEmp = "SELECT Id, Name FROM Employee WHERE ParentEmployee = ?";
-        try (PreparedStatement stEmp = connection.prepareStatement(sqlEmp)) {
+        RequestDAO requestDAO = new RequestDAO();
+        // 1. Lấy thông tin Employee
+        String sqlEmp = "SELECT Id, Name FROM Employee WHERE Parentemployee = ?";
+        try {
+            PreparedStatement stEmp = db.connection.prepareStatement(sqlEmp);
             stEmp.setInt(1, employeeId);
             ResultSet rsEmp = stEmp.executeQuery();
-            while (rsEmp.next()) {
+            if (rsEmp.next()) {
                 AgendaDTO agenda = new AgendaDTO();
+                agenda = new AgendaDTO();
                 agenda.seteId(rsEmp.getInt("Id"));
                 agenda.seteName(rsEmp.getString("Name"));
                 agenda.setRequests(getAgendabyEmpolyeeId(rsEmp.getInt("Id"), dateFrom, dateTo));
@@ -76,18 +83,28 @@ public class EmployeeDAO extends DBContext {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        if (agendaList == null) {
+            // Không tìm thấy employee, trả về null hoặc xử lý theo yêu cầu
+            return null;
+        }
+        // 2. Lấy danh sách RequestDTO của employee trong khoảng thời gian và có status = 'Approved'
+
         return agendaList;
     }
 
     private List<RequestDTO> getAgendabyEmpolyeeId(int employeeId, Date dateFrom, Date dateTo) {
         List<RequestDTO> requestList = new ArrayList<>();
-        String sqlReq = "SELECT r.Id, r.DateCreate, r.DateFrom, r.DateTo, r.Reason, r.Status, r.EmployeeId, e.Name as eName "
-                + "FROM Request r JOIN Employee e ON r.EmployeeId = e.Id "
-                + "WHERE r.EmployeeId = ? AND r.Status = 'Approved' AND r.DateFrom >= ? AND r.DateTo <= ?";
-        try (PreparedStatement stReq = connection.prepareStatement(sqlReq)) {
+        String sqlReq = "SELECT r.Id, r.DateCreate, r.DateFrom, r.DateTo, r.Reason, r.Status "
+                + "FROM Request r "
+                + "WHERE r.EmployeeId = ? "
+                + "  AND r.Status = 'Approved' "
+                + "  AND r.DateFrom >= ? "
+                + "  AND r.DateTo <= ?";
+        try {
+            PreparedStatement stReq = db.connection.prepareStatement(sqlReq);
             stReq.setInt(1, employeeId);
-            stReq.setDate(2, new java.sql.Date(dateFrom.getTime()));
-            stReq.setDate(3, new java.sql.Date(dateTo.getTime()));
+            stReq.setDate(2, dateFrom);
+            stReq.setDate(3, dateTo);
             ResultSet rsReq = stReq.executeQuery();
             while (rsReq.next()) {
                 RequestDTO req = new RequestDTO();
@@ -97,8 +114,6 @@ public class EmployeeDAO extends DBContext {
                 req.setDateTo(rsReq.getDate("DateTo"));
                 req.setReason(rsReq.getString("Reason"));
                 req.setStatus(rsReq.getString("Status"));
-                req.seteId(rsReq.getInt("EmployeeId"));
-                req.seteName(rsReq.getString("eName"));
                 requestList.add(req);
             }
         } catch (SQLException ex) {
@@ -111,8 +126,8 @@ public class EmployeeDAO extends DBContext {
         // Giả sử employeeId cần test là 1
         int employeeId = 1;
         // Thiết lập khoảng ngày test (định dạng: yyyy-MM-dd)
-        java.sql.Date dateFrom = java.sql.Date.valueOf("2025-03-24");
-        java.sql.Date dateTo = java.sql.Date.valueOf("2025-04-15");
+        Date dateFrom = Date.valueOf("2025-03-24");
+        Date dateTo = Date.valueOf("2025-04-15");
 
         // Tạo đối tượng AgendaDAO (đảm bảo trong constructor có thiết lập kết nối DB)
         EmployeeDAO agendaDAO = new EmployeeDAO();
