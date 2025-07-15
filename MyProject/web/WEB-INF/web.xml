@@ -50,7 +50,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/Home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
