@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+
 import java.sql.*;
+
 /**
  *
  * @author quang
  */
 public class Request {
+
     private int Id;
     private int EmployeeId;
     private Date DateTo;
@@ -16,6 +19,9 @@ public class Request {
     private Date DateCreate;
     private String Reason;
     private String Status;
+
+    public Request() {
+    }
 
     public Request(int Id, int EmployeeId, Date DateTo, Date DateFrom, Date DateCreate, String Reason, String Status) {
         this.Id = Id;

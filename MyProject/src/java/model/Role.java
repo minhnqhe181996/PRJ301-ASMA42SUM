@@ -9,9 +9,13 @@ package model;
  * @author quang
  */
 public class Role {
+
     private int Id;
     private String Name;
     private String Description;
+
+    public Role() {
+    }
 
     public Role(int Id, String Name, String Description) {
         this.Id = Id;
@@ -42,6 +46,5 @@ public class Role {
     public void setDescription(String Description) {
         this.Description = Description;
     }
-    
-    
+
 }
