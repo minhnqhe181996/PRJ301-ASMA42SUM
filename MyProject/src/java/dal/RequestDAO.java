@@ -1,9 +1,9 @@
 package dal;
 
-import model.Request;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Request;
 
 public class RequestDAO extends DBContext {
     public List<Request> getAllRequests() {

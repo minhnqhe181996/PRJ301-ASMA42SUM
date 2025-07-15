@@ -1,9 +1,9 @@
 package dal;
 
-import model.Role;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Role;
 
 public class RoleDAO extends DBContext {
     public List<Role> getAllRoles() {

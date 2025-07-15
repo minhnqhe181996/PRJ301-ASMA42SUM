@@ -1,11 +1,31 @@
 package dal;
 
-import model.Schedule;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Schedule;
+
+import model.AgendaDTO;
 
 public class ScheduleDAO extends DBContext {
+    public List<AgendaDTO> getAllAgenda() {
+        List<AgendaDTO> list = new ArrayList<>();
+        String sql = "SELECT Id, EmployeeId, Date, Status FROM Schedule";
+        try (PreparedStatement ps = connection.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                AgendaDTO agenda = new AgendaDTO();
+                agenda.setId(rs.getInt("Id"));
+                agenda.setEmployeeId(rs.getInt("EmployeeId"));
+                agenda.setDate(rs.getDate("Date"));
+                agenda.setStatus(rs.getBoolean("Status"));
+                list.add(agenda);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
     public List<Schedule> getAllSchedules() {
         List<Schedule> list = new ArrayList<>();
         String sql = "SELECT Id, EmployeeId, Date, Status FROM Schedule";

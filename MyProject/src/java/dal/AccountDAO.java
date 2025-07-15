@@ -1,9 +1,9 @@
 package dal;
 
-import model.Account;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Account;
 
 public class AccountDAO extends DBContext {
     public Account validateUser(String username, String password) {
