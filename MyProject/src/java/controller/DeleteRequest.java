@@ -3,10 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controller;
+
 import java.io.IOException;
 import dal.RequestDAO;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;    
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -20,18 +21,19 @@ public class DeleteRequest extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp); // Gọi lại GET khi POST   
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String ID = req.getParameter("id");
         if (ID == null || ID.isEmpty()) {
-            try{
+            try {
                 int id = Integer.parseInt(ID);
                 RequestDAO requestDAO = new RequestDAO();
                 requestDAO.DeleteById(id);
-            }catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 e.printStackTrace();
-                        }
-    }
-    resp.sendRedirect(req.getContextPath() + "/View");
+            }
+        }
+        resp.sendRedirect(req.getContextPath() + "/View");
     }
 }
