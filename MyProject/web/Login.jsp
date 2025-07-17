@@ -13,6 +13,10 @@
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
+            background-image: url('https://displays.riotgames.com/static/content-original-runeterra-ionia-3af5494dd645cb673dc4cedc2d3458b1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         .login-container {
             background: white;
@@ -24,11 +28,20 @@
         }
         input {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
+            padding: 12px;
+            margin: 12px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 6px;
+            font-size: 15px;
+            box-sizing: border-box; /* rất quan trọng để không bị lệch khi padding */
         }
+
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* tạo khoảng cách đều giữa các trường */
+        }
+
         .btn {
             width: 100%;
             padding: 10px;
@@ -48,16 +61,16 @@
     </style>
     <body>
         <div class="login-container">
-        <h2>Login</h2>
-        <% String error = request.getParameter("error"); %>
-        <% if (error != null) { %>
+            <h2>Login</h2>
+            <% String error = request.getParameter("error"); %>
+            <% if (error != null) { %>
             <p class="error">Sai thông tin đăng nhập. Vui lòng thử lại.</p>
-        <% } %>
-        <form action="login" method="POST">
-            <input type="text" name="username" placeholder="User" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" class="btn">Sign in</button>
-        </form>
-    </div>
+            <% } %>
+            <form action="login" method="POST">
+                <input type="text" name="username" placeholder="User" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" class="btn">Sign in</button>
+            </form>
+        </div>
     </body>
 </html>

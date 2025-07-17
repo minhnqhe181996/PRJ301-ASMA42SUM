@@ -103,7 +103,7 @@
     </head>
     <body>
         <!-- Nút quay lại -->
-        <button class="btn-back" onclick="window.location.href='http://localhost:8080/ASMPRJ2/home'">
+        <button class="btn-back" onclick="window.location.href='${pageContext.request.contextPath}/home'">
             Quay lại
         </button>
         <div class="container">
