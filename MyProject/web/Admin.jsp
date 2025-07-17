@@ -74,14 +74,14 @@
             }
         </style>
     <body>
-        <button class="logout-button" onclick="window.location.href='${pageContext.request.contextPath}/logout'">Logout</button>
+        <button class="logout-button" onclick="window.location.href='http://localhost:8080/ASMPRJ2/logout'">Logout</button>
         <div class="container">
-        <button class="custom-button" onclick="window.location.href='${pageContext.request.contextPath}/Management'">
+        <button class="custom-button" onclick="window.location.href='http://localhost:8080/ASMPRJ2/Management'">
             <span>
                 <span class="icon">✨</span> Xét Duyệt Đơn Manager <span>➝</span>
             </span>
         </button>
-        <button class="custom-button" onclick="window.location.href='${pageContext.request.contextPath}/agenda'">
+        <button class="custom-button" onclick="window.location.href='http://localhost:8080/ASMPRJ2/agenda'">
             <span>
                 <span class="icon">✨</span> View Agenda <span>➝</span>
             </span>

@@ -74,19 +74,19 @@
             }
         </style>
     <body>
-        <button class="logout-button" onclick="window.location.href='${pageContext.request.contextPath}/logout'">Logout</button>
+        <button class="logout-button" onclick="window.location.href='http://localhost:8080/ASMPRJ2/logout'">Logout</button>
         <div class="container">
         <button class="custom-button" onclick="window.location.href='Form.jsp'">
             <span>
                 <span class="icon">✨</span> Tạo Đơn Xin Nghỉ Phép <span>➝</span>
             </span>
         </button>
-        <button class="custom-button" onclick="window.location.href='${pageContext.request.contextPath}/View'">
+        <button class="custom-button" onclick="window.location.href='http://localhost:8080/ASMPRJ2/View'">
             <span>
                 <span class="icon">✨</span> Xem đơn của tôi <span>➝</span>
             </span>
         </button>
-            <button class="custom-button" onclick="window.location.href='${pageContext.request.contextPath}/Management'">
+            <button class="custom-button" onclick="window.location.href='http://localhost:8080/ASMPRJ2/Management'">
             <span>
                 <span class="icon">✨</span>Xét Duyệt đơn Employee <span>➝</span>
             </span>

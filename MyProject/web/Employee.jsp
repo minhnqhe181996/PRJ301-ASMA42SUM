@@ -75,7 +75,7 @@
     </head>
     <body>
         <button class="logout-button" 
-                onclick="window.location.href='${pageContext.request.contextPath}/logout'">
+                onclick="window.location.href='http://localhost:8080/ASMPRJ2/logout'">
             Logout
         </button>
         <div class="container">
@@ -85,7 +85,7 @@
                 </span>
             </button>
             <button class="custom-button" 
-                    onclick="window.location.href='${pageContext.request.contextPath}/View'">
+                    onclick="window.location.href='http://localhost:8080/ASMPRJ2/View'">
                 <span>
                     <span class="icon">✨</span> Xem Đơn <span>➝</span>
                 </span>
