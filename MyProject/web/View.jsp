@@ -108,7 +108,7 @@
         </style>
     </head>
     <body>
-        <button class="btn-back" onclick="window.location.href = 'http://localhost:8080/ASMPRJ2/home'">
+        <button class="btn-back" onclick="window.location.href = 'http://localhost:8080/ASMPRJ2/Home'">
             Quay lại
         </button>
         <div class="container">

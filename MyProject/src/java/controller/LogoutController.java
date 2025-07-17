@@ -36,7 +36,7 @@ public class LogoutController extends HttpServlet{
             } else {
                 HttpSession session = req.getSession();
                 session.setAttribute("account", acc);
-                resp.sendRedirect("home");
+                resp.sendRedirect("Home");
             }
         
     }

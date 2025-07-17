@@ -35,14 +35,15 @@ public class LoginControll extends HttpServlet {
         } else {
             HttpSession session = req.getSession();
             session.setAttribute("account", acc);
-            resp.sendRedirect("home");
+            resp.sendRedirect("Home");
         }
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        req.getRequestDispatcher("Login.jsp").forward(req, resp);
+
     }
 
 }

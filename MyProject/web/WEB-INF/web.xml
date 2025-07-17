@@ -2,47 +2,47 @@
 <web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <servlet>
         <servlet-name>LoginControll</servlet-name>
-        <servlet-class>Controller.LoginControll</servlet-class>
+        <servlet-class>controller.LoginControll</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeController</servlet-name>
-        <servlet-class>Controller.HomeController</servlet-class>
+        <servlet-class>controller.HomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutController</servlet-name>
-        <servlet-class>Controller.LogoutController</servlet-class>
+        <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RequestController</servlet-name>
-        <servlet-class>Controller.RequestController</servlet-class>
+        <servlet-class>controller.RequestController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RequestViewController</servlet-name>
-        <servlet-class>Controller.RequestViewController</servlet-class>
+        <servlet-class>controller.RequestViewController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DetailRequest</servlet-name>
-        <servlet-class>Controller.DetailRequest</servlet-class>
+        <servlet-class>controller.DetailRequest</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RequestMNM</servlet-name>
-        <servlet-class>Controller.RequestMNM</servlet-class>
+        <servlet-class>controller.RequestMNM</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteRequest</servlet-name>
-        <servlet-class>Controller.DeleteRequest</servlet-class>
+        <servlet-class>controller.DeleteRequest</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditRequest</servlet-name>
-        <servlet-class>Controller.EditRequest</servlet-class>
+        <servlet-class>controller.EditRequest</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RequestViewMNM</servlet-name>
-        <servlet-class>Controller.RequestViewMNM</servlet-class>
+        <servlet-class>controller.RequestViewMNM</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AgendaController</servlet-name>
-        <servlet-class>Controller.AgendaController</servlet-class>
+        <servlet-class>controller.AgendaController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginControll</servlet-name>
