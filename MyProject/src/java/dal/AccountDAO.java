@@ -1,14 +1,18 @@
+
 package dal;
 
+import model.Account;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import model.Account;
 
+/**
+ *
+ * @author quang
+ */
 public class AccountDAO extends DBContext {
-
     DBContext db = new DBContext();
-
+    
     public Account validateUser(String username, String password) {
         String sql = "select * from Account "
                 + "where Username = ? AND Password = ? ";
@@ -27,12 +31,10 @@ public class AccountDAO extends DBContext {
                 return account;
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
-
+           
         }
         return null;
     }
-
     public List<Account> getAllAccount() {
         List<Account> list = new ArrayList<>();
         String sql = "select * from [Account]";
@@ -50,8 +52,6 @@ public class AccountDAO extends DBContext {
                 list.add(a);
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
-
         }
         return list;
     }
@@ -72,7 +72,7 @@ public class AccountDAO extends DBContext {
                 return acc;
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+
         }
         return null;
     }
