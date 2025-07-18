@@ -90,7 +90,7 @@
                 </div>
                 <div class="field">
                     <label>Lý do (Title):</label>
-                    <textarea name="reason" rows="4" required>${request.getReaason()}</textarea>
+                    <textarea name="reason" rows="4" required>${request.getReason()}</textarea>
                 </div>
                 <div class="button-group">
                     <button type="submit">Update</button>

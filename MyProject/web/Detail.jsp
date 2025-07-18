@@ -96,7 +96,7 @@
                 </div>
                 <div class="field field-multiline">
                     <label>Lý do:</label>
-                    <span style="white-space: pre-wrap;">${detail.getReaason()}</span>
+                    <span style="white-space: pre-wrap;">${detail.getReason()}</span>
                 </div>
                 <div class="field">
                     <label>Trạng thái:</label>

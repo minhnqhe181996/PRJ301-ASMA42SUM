@@ -108,7 +108,7 @@
         </style>
     </head>
     <body>
-        <button class="btn-back" onclick="window.location.href = 'http://localhost:8080/ASMPRJ2/Home'">
+        <button class="btn-back" onclick="window.location.href = '${pageContext.request.contextPath}/Home'">
             Quay lại
         </button>
         <div class="container">
@@ -131,11 +131,11 @@
                                 <c:choose>
                                     <c:when test="${request.getStatus() eq 'Pending'}">
                                         <a href="detail?id=${request.getId()}">
-                                            ${request.getReaason()}
+                                            ${request.getReason()}
                                         </a>
                                     </c:when>
                                     <c:otherwise>
-                                        ${request.getReaason()}
+                                        ${request.getReason()}
                                     </c:otherwise>
                                 </c:choose>
                             </td>
