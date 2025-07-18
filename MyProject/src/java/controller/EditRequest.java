@@ -49,13 +49,13 @@ public class EditRequest extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String ID = req.getParameter("id");
-        if (ID == null || ID.isEmpty()) {
-            int id = Integer.parseInt(ID);
+        String Id = req.getParameter("Id");
+        if (Id != null) {
+            int id = Integer.parseInt(Id);
             RequestDAO requestDAO = new RequestDAO();
             Request request = requestDAO.getReuestbyId(id);
             req.setAttribute("request", request);
-            req.getRequestDispatcher("EditFrom.jsp").forward(req, resp);
+            req.getRequestDispatcher("EditForm.jsp").forward(req, resp);
         } else {
             // Nếu không có ID, chuyển hướng về trang chủ   
             resp.sendRedirect("View");

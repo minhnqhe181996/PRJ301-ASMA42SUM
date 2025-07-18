@@ -47,7 +47,7 @@ public class DetailRequest extends HttpServlet {
         System.out.println("Received ID: " + ID);
         if (ID == null || ID.isEmpty()) {
             // Nếu không có ID, chuyển hướng về trang chủ
-            resp.sendRedirect("home");
+            resp.sendRedirect("Home");
             return;
         }
 
@@ -58,7 +58,7 @@ public class DetailRequest extends HttpServlet {
         if (request == null) {
             //Nếu không tìm thấy đơn, quay về danh sách
             System.out.println("Error: Request not found for ID: " + id);
-            resp.sendRedirect("home");
+            resp.sendRedirect("Home");
             return;
         }
 

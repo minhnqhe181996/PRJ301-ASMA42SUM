@@ -19,13 +19,12 @@ public class DeleteRequest extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp); // Gọi lại GET khi POST   
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String ID = req.getParameter("id");
-        if (ID == null || ID.isEmpty()) {
+        if (ID != null) {
             try {
                 int id = Integer.parseInt(ID);
                 RequestDAO requestDAO = new RequestDAO();
