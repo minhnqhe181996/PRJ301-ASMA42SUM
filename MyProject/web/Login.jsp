@@ -4,88 +4,120 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Đăng Nhập</title>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <style>
         :root {
-            --primary-blue: #007bff;
-            --light-bg: #e0e5ec;
-            --dark-text: #222;
-            --light-text: #f0f2f5;
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.45);
-            --input-bg: rgba(255, 255, 255, 0.7);
-            --input-border-focus: rgba(0, 123, 255, 0.7);
-            --button-primary: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
-            --button-hover: linear-gradient(90deg, #00c6ff 0%, #007bff 100%);
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --text-primary: #1a1a1a;
+            --text-secondary: #64748b;
+            --text-light: #ffffff;
+            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
+            --blur-amount: 20px;
             --error-red: #dc3545;
-            --label-color: #888;
         }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #4CAF50, #2196F3); /* Nền gradient xanh lá sang xanh dương */
-            /* Hoặc dùng hình nền khác: */
-            /* background-image: url('https://source.unsplash.com/random/1920x1080?abstract'); */
-            /* background-size: cover; */
-            /* background-position: center; */
+            padding: 20px;
             position: relative;
-            overflow: hidden; /* Ngăn cuộn */
+            overflow: hidden;
         }
-
-        /* Hiệu ứng hạt (Particle effect - tùy chọn, có thể bỏ nếu không cần) */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         body::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top left, rgba(255,255,255,0.1) 0%, transparent 50%),
-                        radial-gradient(circle at bottom right, rgba(255,255,255,0.1) 0%, transparent 50%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            animation: floatingOrbs 20s linear infinite;
             z-index: 0;
-            animation: moveParticles 20s linear infinite;
         }
-
-        @keyframes moveParticles {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 100% 100%; }
+        @keyframes floatingOrbs {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
         }
-
-        .login-container {
+        .main-container {
             background: var(--glass-bg);
-            border: 1.5px solid var(--glass-border);
-            backdrop-filter: blur(18px) saturate(1.2);
-            border-radius: 28px;
-            box-shadow: 0 10px 40px 0 rgba(31, 38, 135, 0.25);
-            padding: 48px 38px 38px 38px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--blur-amount));
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            padding: 40px;
             width: 100%;
-            max-width: 410px;
-            text-align: center;
+            max-width: 420px;
+            position: relative;
             z-index: 1;
-            animation: fadeInSlideUp 0.8s cubic-bezier(.4,1.4,.6,1) forwards;
-            margin: 0 auto;
+            animation: containerFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes containerFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+                filter: blur(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
         }
         .login-header {
-            margin-bottom: 30px;
+            text-align: center;
+            margin-bottom: 36px;
+            position: relative;
+        }
+        .login-header::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+            animation: headerGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes headerGlow {
+            from { opacity: 0.6; transform: translateX(-50%) scaleX(1); }
+            to { opacity: 1; transform: translateX(-50%) scaleX(1.2); }
         }
         .login-header h2 {
-            color: var(--primary-blue);
             font-size: 30px;
-            font-weight: 800;
-            margin: 12px 0 2px 0;
-            letter-spacing: 1px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
         .login-header .subtitle {
-            color: #555;
-            font-size: 16px;
-            margin-bottom: 0;
+            color: var(--text-secondary);
+            font-size: 15px;
             font-weight: 400;
+            opacity: 0.8;
         }
         .error-box {
             display: flex;
@@ -102,7 +134,7 @@
             box-shadow: 0 2px 8px rgba(220,53,69,0.07);
             justify-content: center;
         }
-        .login-container form {
+        .login-form {
             display: flex;
             flex-direction: column;
             gap: 22px;
@@ -111,15 +143,14 @@
             position: relative;
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
         }
         .input-group input {
             width: 100%;
-            padding: 18px 18px 18px 46px;
-            border: 1.5px solid transparent;
+            padding: 18px 18px 18px 48px;
+            border: 1.5px solid var(--glass-border);
             border-radius: 12px;
-            background: var(--input-bg);
-            color: var(--dark-text);
+            background: rgba(255,255,255,0.7);
+            color: var(--text-primary);
             font-size: 17px;
             font-weight: 500;
             box-sizing: border-box;
@@ -128,10 +159,10 @@
         }
         .input-group label {
             position: absolute;
-            left: 46px;
+            left: 48px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--label-color);
+            color: var(--text-secondary);
             font-size: 15px;
             font-weight: 500;
             pointer-events: none;
@@ -142,54 +173,50 @@
         .input-group input:focus + label,
         .input-group input:not(:placeholder-shown) + label {
             top: 6px;
-            left: 44px;
+            left: 46px;
             font-size: 12px;
-            color: var(--primary-blue);
+            color: #667eea;
             background: transparent;
-        }
-        .input-group input::placeholder {
-            color: #888;
-            font-weight: 400;
-        }
-        .input-group input:focus {
-            border-color: var(--input-border-focus);
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.13);
-            outline: none;
         }
         .input-icon {
             position: absolute;
-            left: 15px;
+            left: 16px;
             top: 50%;
             transform: translateY(-50%);
             pointer-events: none;
             opacity: 0.7;
+            font-size: 20px;
+            color: #667eea;
         }
-        .btn {
+        .btn-login {
             width: 100%;
-            padding: 16px;
-            background: var(--button-primary);
-            color: var(--light-text);
+            padding: 18px;
+            background: var(--primary-gradient);
+            color: var(--text-light);
             border: none;
             cursor: pointer;
             border-radius: 12px;
             font-size: 19px;
             font-weight: 700;
             letter-spacing: 1px;
-            box-shadow: 0 6px 18px rgba(0, 123, 255, 0.18);
+            box-shadow: 0 6px 18px rgba(102, 126, 234, 0.18);
             transition: all 0.25s cubic-bezier(.4,1.4,.6,1);
             position: relative;
             overflow: hidden;
             opacity: 0.5;
             filter: grayscale(0.2);
             pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        .btn.active {
+        .btn-login.active {
             opacity: 1;
             filter: none;
             pointer-events: auto;
         }
-        .btn:before {
+        .btn-login:before {
             content: '';
             position: absolute;
             left: -75%;
@@ -200,28 +227,27 @@
             transform: skewX(-20deg);
             transition: left 0.4s cubic-bezier(.4,1.4,.6,1);
         }
-        .btn.active:hover:before {
+        .btn-login.active:hover:before {
             left: 120%;
         }
-        .btn.active:hover {
-            background: var(--button-hover);
+        .btn-login.active:hover {
+            background: var(--secondary-gradient);
             transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 10px 28px rgba(0, 123, 255, 0.22);
+            box-shadow: var(--shadow-hover);
         }
-        .btn.active:active {
+        .btn-login.active:active {
             transform: scale(0.98);
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.13);
+            box-shadow: var(--shadow-soft);
         }
-        @media (max-width: 500px) {
-            .login-container {
-                margin: 18px;
-                padding: 32px 10px 24px 10px;
+        @media (max-width: 600px) {
+            .main-container {
+                padding: 30px 12px;
             }
             .login-header h2 {
-                font-size: 23px;
+                font-size: 22px;
             }
             .input-group input {
-                padding: 13px 14px 13px 38px;
+                padding: 14px 12px 14px 38px;
                 font-size: 15px;
             }
             .input-group label {
@@ -233,14 +259,13 @@
                 left: 36px;
                 font-size: 11px;
             }
-            .btn {
-                padding: 13px;
+            .btn-login {
+                padding: 14px;
                 font-size: 16px;
             }
         }
     </style>
     <script>
-        // Floating label và enable nút đăng nhập khi đủ dữ liệu
         document.addEventListener('DOMContentLoaded', function() {
             const username = document.getElementById('username');
             const password = document.getElementById('password');
@@ -258,14 +283,10 @@
         });
     </script>
     <body>
-        <div class="login-container">
+        <div class="main-container">
             <div class="login-header">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="12" fill="#007bff" fill-opacity="0.15"/>
-                  <path d="M12 12c1.933 0 3.5-1.567 3.5-3.5S13.933 5 12 5s-3.5 1.567-3.5 3.5S10.067 12 12 12zm0 2c-2.33 0-7 1.167-7 3.5V20h14v-2.5c0-2.333-4.67-3.5-7-3.5z" fill="#007bff"/>
-                </svg>
-                <h2>Chào mừng trở lại!</h2>
-                <p class="subtitle">Đăng nhập để tiếp tục</p>
+                <h2>Đăng Nhập</h2>
+                <div class="subtitle">Vui lòng nhập thông tin để tiếp tục</div>
             </div>
             <% String error = request.getParameter("error"); %>
             <% if (error != null) { %>
@@ -274,22 +295,20 @@
                 <span>Sai thông tin đăng nhập. Vui lòng thử lại.</span>
             </div>
             <% } %>
-            <form action="login" method="POST" autocomplete="off">
+            <form action="login" method="POST" autocomplete="off" class="login-form">
                 <div class="input-group">
-                    <span class="input-icon">
-                        <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#007bff"/></svg>
-                    </span>
+                    <span class="input-icon"><i class="fas fa-user"></i></span>
                     <input type="text" id="username" name="username" required autocomplete="username" placeholder=" " />
-                    <label for="username">Tên người dùng</label>
+                    <label for="username">Tên đăng nhập</label>
                 </div>
                 <div class="input-group">
-                    <span class="input-icon">
-                        <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M12 17a2 2 0 100-4 2 2 0 000 4zm6-7V7a6 6 0 10-12 0v3a2 2 0 00-2 2v7a2 2 0 002 2h12a2 2 0 002-2v-7a2 2 0 00-2-2zm-8-3a4 4 0 118 0v3H6V7z" fill="#007bff"/></svg>
-                    </span>
+                    <span class="input-icon"><i class="fas fa-lock"></i></span>
                     <input type="password" id="password" name="password" required autocomplete="current-password" placeholder=" " />
                     <label for="password">Mật khẩu</label>
                 </div>
-                <button type="submit" class="btn" id="login-btn">Đăng Nhập</button>
+                <button type="submit" class="btn-login" id="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Đăng Nhập
+                </button>
             </form>
         </div>
     </body>
