@@ -88,4 +88,22 @@
         <servlet-name>AgendaController</servlet-name>
         <url-pattern>/agenda</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>AttendanceController</servlet-name>
+        <servlet-class>controller.AttendanceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AttendanceManagerController</servlet-name>
+        <servlet-class>controller.AttendanceManagerController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AttendanceController</servlet-name>
+        <url-pattern>/attendance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttendanceManagerController</servlet-name>
+        <url-pattern>/attendance/manage</url-pattern>
+    </servlet-mapping>
+
 </web-app>
