@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Hệ Thống Quản Lý Phiên Làm Việc</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .container {
+                background: white;
+                padding: 40px;
+                border-radius: 15px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                width: 100%;
+                max-width: 400px;
+                text-align: center;
+            }
+            
+            .logo {
+                font-size: 24px;
+                color: #333;
+                margin-bottom: 30px;
+                font-weight: bold;
+            }
+            
+            .form-group {
+                margin-bottom: 20px;
+                text-align: left;
+            }
+            
+            .form-group label {
+                display: block;
+                margin-bottom: 8px;
+                color: #555;
+                font-weight: 500;
+            }
+            
+            .form-group input {
+                width: 100%;
+                padding: 12px 15px;
+                border: 2px solid #e1e5e9;
+                border-radius: 8px;
+                font-size: 16px;
+                transition: border-color 0.3s ease;
+            }
+            
+            .form-group input:focus {
+                outline: none;
+                border-color: #667eea;
+            }
+            
+            .login-btn {
+                width: 100%;
+                padding: 12px;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+            }
+            
+            .login-btn:hover {
+                transform: translateY(-2px);
+            }
+            
+            .links {
+                margin-top: 30px;
+            }
+            
+            .links a {
+                display: block;
+                margin: 10px 0;
+                color: #667eea;
+                text-decoration: none;
+                font-weight: 500;
+                transition: color 0.3s ease;
+            }
+            
+            .links a:hover {
+                color: #764ba2;
+            }
+            
+            .divider {
+                margin: 20px 0;
+                border-top: 1px solid #e1e5e9;
+            }
+            
+            .info {
+                background: #f8f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                margin-top: 20px;
+                font-size: 14px;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="logo">🔐 Hệ Thống Đăng Nhập</div>
+            
+            <form action="Login" method="get">
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập:</label>
+                    <input type="text" id="username" name="username" required placeholder="Nhập tên đăng nhập">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="password" name="password" required placeholder="Nhập mật khẩu">
+                </div>
+                
+                <button type="submit" class="login-btn">🚀 Đăng Nhập</button>
+            </form>
+            
+            <div class="divider"></div>
+            
+            <div class="links">
+                <a href="sessionCounter.jsp">📊 Xem số lượng phiên làm việc</a>
+                <a href="javascript:location.reload()">🔄 Làm mới trang</a>
+            </div>
+            
+            <div class="info">
+                <strong>💡 Hướng dẫn:</strong><br>
+                • Nhập tên đăng nhập bất kỳ để tạo phiên làm việc<br>
+                • Hệ thống sẽ tự động đếm số phiên hiện tại<br>
+                • Mỗi lần đăng nhập sẽ tăng số đếm lên 1
+            </div>
+        </div>
+    </body>
+</html>
