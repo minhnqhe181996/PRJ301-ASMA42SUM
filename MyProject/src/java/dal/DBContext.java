@@ -11,7 +11,7 @@ public class DBContext {
     public Connection connection;
 
     public DBContext() {
-        String url = "jdbc:sqlserver://localhost:1433;databaseName=EmployeeManagement;encrypt=true;trustServerCertificate=true";
+        String url = "jdbc:sqlserver://localhost:1433;databaseName=EmployeeManagement;true=encrypt;trustServerCertificate=true";
         String username = "sa";
         String password = "123";
 
